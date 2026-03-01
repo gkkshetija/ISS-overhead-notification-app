@@ -2,11 +2,19 @@ import time
 import requests
 import smtplib
 from datetime import datetime, timezone, timedelta
+import os
 
+# import os and use it to get the Github repository secrets
+MY_EMAIL = os.environ.get("MY_EMAIL")
+MY_PASSWORD = os.environ.get("MY_PASSWORD")
 MY_LAT = 18.9810
 MY_LONG =73.0309
-MY_EMAIL = "gkkshetija@gmail.com"
-MY_PASSWORD = "acdcvuixekvheifa"
+
+print("EMAIL:", MY_EMAIL)
+print("PASSWORD:", MY_PASSWORD)
+
+
+
 
 #----------------------getting ISS current position from iss  API-----------#
 def iss_overhead():
