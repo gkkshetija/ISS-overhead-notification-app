@@ -57,21 +57,19 @@ def is_night_time():
 
 	if time_now > sunset_hour or time_now < sunrise_hour:
 		return True
+	return False
 
 	print(f"Sunset hour : {sunrise_hour},\nSunset hour : {sunset_hour},\nCurrent Hour : {time_now}")
 
 
 #----------if your position is within +5 and -5 degree of the ISS position  and it is dark(time>19 hrs) the send an email notification that lookup at the sky----#
-
-while True:
-
-	time.sleep(120)
-	if iss_overhead() and is_night_time() :
-		connection = smtplib.SMTP("smtp.gmail.com", 587)
-		connection.starttls()
-		connection.login(MY_EMAIL, MY_PASSWORD)
-		connection.sendmail(
-			from_addr=MY_EMAIL,
-			to_addrs =MY_EMAIL,
-			msg ="Subject:Look up ! \n\n Dear Girish,\nThe ISS is above you in the sky.\n\n Regards,\nGirish"
-		)
+if iss_overhead() and is_night_time() :
+	connection = smtplib.SMTP("smtp.gmail.com", 587)
+	connection.starttls()
+	connection.login(MY_EMAIL, MY_PASSWORD)
+	connection.sendmail(
+		from_addr=MY_EMAIL,
+		to_addrs =MY_EMAIL,
+		msg ="Subject:Look up ! \n\n Dear Girish,\nThe ISS is above you in the sky.\n\n Regards,\nGirish"
+	)
+	connection.quit()
